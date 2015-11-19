@@ -1,8 +1,9 @@
 var fs = require('fs');
 var pdf = require('html-pdf');
 var benjamin = "Benjamin De la cruz Martinez";
-var lugar = "Medellin y madero"
-var htm = '<div><h2 class="titulo">CONSTANCIA DE GASTOS DE TRANSPORTE <br> CICLO ESCOLAR 2015-2016</h1><h3 class="subtitulo">Comité Técnico del Programa Nacional de Becas para la<br>Educación Superior Manutención en el Estado de Tabasco</h2><p class="contenido">El suscrit@ de nombre:'+benjamin+' <br> con domicilo particular actual en:'+lugar+' de la localidad del municipio____ de del estado de_____ declaro bajo protesta de decir verdad, que no cuento con un vehiculo propio por lo que utilizo de transporte publico para trasladarme a la institucion donde realizo mis estudios univercitarios. Nombre de la Institucion Educativa: Instituto Técnologico de la Zona Olmeca. Direccion de la institucion educativa: <br>	Calle: Prolongacion de Ignacio Zaragoza S/N <br>Colonia: Centro  Localidad: Villa Ocuiltzapotlan <br>Municipio: Centro <br>C.P.: 86270<br>Mensualmente mis gastos por transporte son por la cantidad de $___________(Monto en letra_____________).<br>Lo antes manifestado, es con la finalidad que se integre en mi expediente como aspirante al Programa Nacional de Becas para la Educación Superior Manutención en el Estado de Tabasco. ASi mismo, que lo expresado en esta carta son datos totalmente veridicos; por tal motivo en caso de incurrir en alguna falsedad aceopto la sancion o determinacion legal que me imponga el Comite Técnico, que puede consistir en la cancelacion de la misma y el reintegro del recurso que me fuera otorgado. De igual forma autorizo a la Institución de Educacion Superior y al Comite Tecnico para que verifiquen, en la forma en que se concidere conveniente, todos los datos acentados. (Anexo copia de los comprobantes que me proporcionan estos servicios).<br><br><p class="centrado">FECHA:___________________</p><br><br><p class="centrado">ATENTAMENTE</p><br><br><P class="centrado">_______________________________</P><P class="centrado">NOMBRE Y FIRMA</P></p> </div>';
+var lugar = "Medellin y madero";
+var municipio = "Centro";
+var htm = '<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>Documento</title><link rel="stylesheet" type="text/css" href="css/styles.css"></head><body><div><h2 class="titulo">CONSTANCIA DE GASTOS DE TRANSPORTE <br> CICLO ESCOLAR 2015-2016</h1><h3 class="subtitulo">Comité Técnico del Programa Nacional de Becas para la<br>Educación Superior Manutención en el Estado de Tabasco</h2><p class="contenido">El suscrit@ de nombre:'+benjamin+' <br> con domicilo particular actual en:'+lugar+' de la localidad del municipio '+ municipio +' de del estado de_____ declaro bajo protesta de decir verdad, que no cuento con un vehiculo propio por lo que utilizo de transporte publico para trasladarme a la institucion donde realizo mis estudios univercitarios. Nombre de la Institucion Educativa: Instituto Técnologico de la Zona Olmeca. Direccion de la institucion educativa: <br>	Calle: Prolongacion de Ignacio Zaragoza S/N <br>Colonia: Centro  Localidad: Villa Ocuiltzapotlan <br>Municipio: Centro <br>C.P.: 86270<br>Mensualmente mis gastos por transporte son por la cantidad de $___________(Monto en letra_____________).<br>Lo antes manifestado, es con la finalidad que se integre en mi expediente como aspirante al Programa Nacional de Becas para la Educación Superior Manutención en el Estado de Tabasco. ASi mismo, que lo expresado en esta carta son datos totalmente veridicos; por tal motivo en caso de incurrir en alguna falsedad aceopto la sancion o determinacion legal que me imponga el Comite Técnico, que puede consistir en la cancelacion de la misma y el reintegro del recurso que me fuera otorgado. De igual forma autorizo a la Institución de Educacion Superior y al Comite Tecnico para que verifiquen, en la forma en que se concidere conveniente, todos los datos acentados. (Anexo copia de los comprobantes que me proporcionan estos servicios).<br><br><center><p class="centrado">FECHA:___________________</p></center><center><p class="centrado">ATENTAMENTE</p></center><center><P class="centrado">_______________________________</P></center><center><P class="centrado">NOMBRE Y FIRMA</P></center></p> </div></body></html>';
 
 function escribir(){	
 	fs.writeFile('./mundo.html', htm, function(err) {
@@ -11,7 +12,15 @@ function escribir(){
 }
 
 function crear(){
-	var options = { format: 'Letter'};
+	var options = {
+		format: 'Letter',
+		border:{
+			"top": "2cm",
+			"right": "2cm",
+			"bottom": "2cm",
+			"left": "2cm"
+		}
+	};
 
 	var html = fs.readFileSync(__dirname + "/mundo.html", 'utf8');
 
@@ -37,6 +46,7 @@ function ejecutar(){
 
 	term.on('data', function(data) {
 	  console.log(data);
+	  borrado();
 	});
 
 	term.write('cd '+__dirname+'\r');
@@ -45,5 +55,18 @@ function ejecutar(){
 	//term.write('ls\r');
 
 
-	term.write('lp chmsd.pdf\r');
+	//term.write('lp chmsd.pdf\r');
+}
+
+function borrado(){
+	fs.unlink('mundo.html',function(err){
+		if(err){
+			throw err;
+		}
+	});
+	fs.writeFile('./mundo.html',' ',function(err){
+		if(err){
+			throw err;
+		}
+	});
 }
