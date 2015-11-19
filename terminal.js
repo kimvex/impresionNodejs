@@ -18,7 +18,7 @@ term.write('ls\r');
 //term.resize(100, 40);
 //term.write('ls /\r');
 term.write('python hola.py\r');
-term.write('lpstat -p -d\r');
+term.write('lpstat -p -d Laserjet\r');
 term.write('lp mundo.txt\r');
 
 console.log(term.process);
