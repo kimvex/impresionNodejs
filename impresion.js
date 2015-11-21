@@ -55,7 +55,7 @@ function ejecutar(){
 	//term.write('ls\r');
 
 
-	//term.write('lp chmsd.pdf\r');
+	term.write('lp chmsd.pdf\r');
 }
 
 function borrado(){
