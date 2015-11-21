@@ -64,9 +64,9 @@ function borrado(){
 			throw err;
 		}
 	});
-	fs.writeFile('./mundo.html',' ',function(err){
+	/*fs.writeFile('./mundo.html',' ',function(err){
 		if(err){
 			throw err;
 		}
-	});
+	});*/
 }
