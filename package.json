@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.3",
-    "html-pdf": "^1.4.0",
-    "pty.js": "^0.3.0"
+    "html-pdf": "^1.4.0
   }
 }

@@ -35,7 +35,7 @@ escribir();
 
 function ejecutar(){
 	//term.write('cd '+__dirname+'\r');
-	command = 'lp chmsd.pdf';
+	command = 'lp chmsd.pdf\r ls';
 	child = exec(command, function(error, stdout, stderr){
 		if(error){
 			throw error;
