@@ -25,7 +25,7 @@ function crear(){
 
 	var html = fs.readFileSync(__dirname + "/mundo.html", 'utf8');
 
-	pdf.create(html,options).toFile('./chmsd.pdf',function(err, res){
+	pdf.create(html,options).toFile('./kimvex.pdf',function(err, res){
 	  console.log(res.filename);
 	  ejecutar();
 	});
@@ -35,7 +35,7 @@ escribir();
 
 function ejecutar(){
 	//term.write('cd '+__dirname+'\r');
-	command = 'lp chmsd.pdf';
+	command = 'lp kimvex.pdf';
 	child = exec(command, function(error, stdout, stderr){
 		if(error){
 			throw error;
