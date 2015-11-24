@@ -6,25 +6,25 @@
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
-<section>
+<form id="impresion">
 	
 	<h2 class="titulo">CONSTANCIA DE GASTOS DE TRANSPORTE <br> CICLO ESCOLAR 2015-2016</h1>
 
 	<h3 class="subtitulo">Comité Técnico del Programa Nacional de Becas para la<br>Educación Superior Manutención en el Estado de Tabasco</h2>
 
 	<p class="contenido">
-		El suscrit@ de nombre:_____ <br> con domicilo particular actual en:_____ de la localidad del municipio____ de del estado de_____ declaro bajo protesta de decir verdad, que no cuento con un vehiculo propio por lo que utilizo de transporte publico para trasladarme a la institucion donde realizo mis estudios univercitarios.
+		El suscrit@ de nombre <input id="nombre" name="nombre" placeholder="Nombre" required> con domicilo particular actual en <input id="localidad" name="localidad" placeholder="localidad" required> de la localidad del municipio <input id="municipio" name="municipio" placeholder="municipio" required> de del estado de <input id="estado" name="estado" placeholder="estado" required> declaro bajo protesta de decir verdad, que no cuento con un vehiculo propio por lo que utilizo de transporte publico para trasladarme a la institucion donde realizo mis estudios univercitarios.
 		Nombre de la Institucion Educativa: Instituto Técnologico de la Zona Olmeca.
 		Direccion de la institucion educativa: <br>
 		Calle: Prolongacion de Ignacio Zaragoza S/N <br>
 		Colonia: Centro  Localidad: Villa Ocuiltzapotlan <br>
 		Municipio: Centro <br>
 		C.P.: 86270<br>
-		Mensualmente mis gastos por transporte son por la cantidad de $___________(Monto en letra_____________).<br>
+		Mensualmente mis gastos por transporte son por la cantidad de $<input id="gastos" name="gastos" placeholder="gastos" required> (Monto en letra <input id="montoEnLetra" name="montoEnLetra" placeholder="montoEnLetra" required>).<br>
 		Lo antes manifestado, es con la finalidad que se integre en mi expediente como aspirante al Programa Nacional de Becas para la Educación Superior Manutención en el Estado de Tabasco. ASi mismo, que lo expresado en esta carta son datos totalmente veridicos; por tal motivo en caso de incurrir en alguna falsedad aceopto la sancion o determinacion legal que me imponga el Comite Técnico, que puede consistir en la cancelacion de la misma y el reintegro del recurso que me fuera otorgado. De igual forma autorizo a la Institución de Educacion Superior y al Comite Tecnico para que verifiquen, en la forma en que se concidere conveniente, todos los datos acentados. (Anexo copia de los comprobantes que me proporcionan estos servicios).
 		<br>
 		<br>
-		<p class="centrado">FECHA:___________________</p>
+		<p class="centrado">FECHA: <input id="fecha" name="fecha" placeholder="fecha" required></p>
 		<br>
 		<br>
 		<p class="centrado">ATENTAMENTE</p>
@@ -32,10 +32,8 @@
 		<br>
 		<P class="centrado">_______________________________</P>
 		<P class="centrado">NOMBRE Y FIRMA</P>
-
-
-
 	</p> 
-</section>
+	<input type="submit" value="Enviar">
+</form>
 </body>
 </html>
