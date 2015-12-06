@@ -13,6 +13,7 @@ var correo = function(config){
         if(err){
           throw err;
         }
+        console.log(respuesta);
         config.res.json(respuesta);
    });
 }

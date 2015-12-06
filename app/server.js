@@ -5,9 +5,10 @@ var express = require('express'),
 		mail    = require('./website/controllers/correos'),
 		mails   = require('./website/controllers/correoEspecifico'),
 		envios  = require('./website/controllers/correosEnviados'),
+		correoEnvio = require('./website/controllers/correoEnvio'),
 		session	= require('express-session'),
 		multer	= require('multer'),
-		upload	= multer({dest: 'static/archivos/'}),
+		upload	= multer({dest: './app/static/archivos/'}),
 		passSecret =  process.env.SECRET,
 		dev			=	process.env.ENV,
 		ip 			= require('ip');
@@ -85,8 +86,29 @@ var expressServer = function(config){
 		var correos = new mails(datos);
 	});
 
-	this.app.get('/enviosC',function(sol,res,next){
-		res.send({});
+	this.app.post('/enviosC',upload.single('img'),function(sol,res,next){
+		if(sol.file == undefined){
+			var datos = {
+			  correo: sol.body.cDestino,
+			  titulo: sol.body.titulo,
+			  mensaje: sol.body.mensaje,
+			  us: sol.session.name,
+			  dat: 1
+			}
+			var correosEnviar = new correoEnvio({sol:sol,res:res,datos:datos});
+		}else{
+			console.log(sol.file);
+			var datos = {
+			  correo: sol.body.cDestino,
+			  titulo: sol.body.titulo,
+			  mensaje: sol.body.mensaje,
+			  us: sol.session.name,
+			  file: sol.file.filename,
+			  fileRname: sol.file.originalname,
+			  dat: 2
+			}
+			var correosEnviar = new correoEnvio({sol:sol,res:res,datos:datos});
+		}
 	});
 
 	this.app.post('/entrar',function(sol,res,next){

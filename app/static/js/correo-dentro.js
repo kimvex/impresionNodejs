@@ -10,12 +10,26 @@ document.addEventListener('DOMContentLoaded',function(){
       type: 'GET',
       success: function(data){
         console.log(data);
-        var texto = '<div class="texto-correo"><h1>'+data[0].titulo+'</h1> \n\n'+'<p>'+data[0].texto+'</p>\n<p>'+data[0].archivo+'</p></div>';
+        if(data[0].sino == 1){
+          var texto = '<div class="texto-correo"><h1>'+data[0].titulo+'</h1> \n\n'+'<p>'+data[0].texto+'</p>\n<p>'+data[0].nameOrigin+'</p><p><a href="#" id="botonImpresionCorreo"><button class="botonImpresionCorreo" id="'+data[0].archivo+'">Imprimir archivo</button></a></p></div>';
+        }else{
+          var texto = '<div class="texto-correo"><h1>'+data[0].titulo+'</h1> \n\n'+'<p>'+data[0].texto+'</p>\n<p>'+data[0].nameOrigin+'</p></div>';
+        }
         document.getElementById('correos-se').innerHTML = texto;
+        if(data[0].sino == 1){
+          document.getElementById('botonImpresionCorreo').addEventListener('click',datosImprimir);
+        }
       }
     });
 		//$.get('/leer'+this.+'');
 	}
+
+  function datosImprimir(e){
+    console.log(e.target.id);
+    socket.emit('imprimir',e.target.id);
+    e.preventDefault();
+  }
+
 	function recibiendo(e){
     localStorage['lugar'] = 'recibidos';	
 		var centroMail = document.getElementById('correos-se');
@@ -101,15 +115,20 @@ document.addEventListener('DOMContentLoaded',function(){
   var socket = io.connect('http://'+server+":5000");
 
   function envioMail(e){
-    var datos = {
-      correo: document.getElementById('cDestino').value,
-      titulo: document.getElementById('cTitulo').value,
-      mensaje: document.getElementById('mensaje').value,
-      us: document.getElementById('usuario').value
-    }
-    socket.emit('mail',datos);
-    console.log('hola');
-    document.getElementById('correos-se').innerHTML = '<div class="envio-mensaje-dato"><p>Mensaje enviado</p></div>';
+    var formData = new FormData($("#envioCorreo")[0]);
+    $.ajax({
+      url: "/enviosC",
+      type: "POST",
+      dataType: "Json",
+      data: formData,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function(data){ 
+        socket.emit('mail',data.correo);
+        document.getElementById('correos-se').innerHTML = '<div class="envio-mensaje-dato"><p>Mensaje enviado</p></div>';
+      }
+    });
     e.preventDefault();
   }
   socket.on(usuario,function(data){
