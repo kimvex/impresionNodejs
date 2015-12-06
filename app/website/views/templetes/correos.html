@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Correos</title>
+	<link rel="stylesheet" href="css/estilo-correo.css">
+	<link rel="stylesheet" href="css/normalize.css">
+	<script src="lib/jquery-2.1.3.js"></script>
+  <script src="http://<< ipServer >>:5000/socket.io/socket.io.js"></script>
+	<script src="js/correo-dentro.js"></script>
+</head>
+<body>
+	<header class="cabecera-lista-correo" id="header-correo"></header>
+	<section class="cuerpo-lista-correo">
+		<aside class="menu-lista-correo">
+			<ul class="lista-item-ul">
+				<li class="lista-item">
+					<a href="/recibidos" id="recibidos">
+						Recibidos
+					</a>
+				</li>
+				<li class="lista-item">
+					<a href="#" id="enviados">
+						Enviados
+					</a>
+				</li>
+        <li class="lista-item">
+          <a href="#" id="crear">
+            Crear
+          </a>
+        </li>
+        <li class="lista-item">
+					<a href="#" id="cerrar">
+						Cerrar sesión
+					</a>
+				</li>
+			</ul>
+		</aside>
+		<div class="lista-correos-centro" id="correos-se">
+			
+		</div>
+	</section>
+  <input type="hidden" id="server" value="<< ipServer >>">
+  <input type="hidden" id="usuario" value="<< ipUsuario >>">
+</body>
+</html>

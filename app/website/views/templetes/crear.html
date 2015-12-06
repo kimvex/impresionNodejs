@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crear</title>
+  <link rel="stylesheet" href="css/estilo-correo.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <script src="lib/jquery-2.1.3.js"></script>
+  <script src="js/correo-dentro.js"></script>
+  <script src="http://<< ipServer >>:5000/socket.io/socket.io.js"></script>
+  <script src="js/socket.js"></script>
+</head>
+<body>
+  <section class="contenido-envio" id="contenidoEnvio">  
+    <form id="envioCorreo" class="envio-correo">
+      <input type="email" name="cDestino" id="cDestino" class="c-detino" placeholder="Correo" required>
+      <input type="text" name="titulo" id="cTitulo" class="c-titulo" placeholder="Titulo" require>
+      <textarea name="mensaje" id="mensaje" class="mensaje"></textarea>
+      <input type="submit" value="Enviar" class="envio-correo-boton">
+    </form>
+  </section>
+  <input type="hidden" id="server" value="<< ipServer >>">
+</body>
+</html>
